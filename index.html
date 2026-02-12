@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Birthday Picks 💛</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f17;
+      color: #ffffff;
+      padding: 20px;
+    }
+    .card {
+      max-width: 700px;
+      margin: auto;
+      background: #111827;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    h1 { color: #fbbf24; }
+    label { display: block; margin: 8px 0; }
+    button {
+      margin-top: 15px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      background: #fbbf24;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 15px;
+      white-space: pre-wrap;
+      background: #1f2937;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy (late) Birthday 💛</h1>
+    <p>I know I missed doing something thoughtful on Jan 14. This is my little birthday menu for you ✨</p>
+
+    <h3>1) Gift vibe</h3>
+    <label><input type="radio" name="gift" value="Remote control car"> Remote control car</label>
+    <label><input type="radio" name="gift" value="LEGO set"> LEGO set</label>
+
+    <h3>2) Cake (Biscoff only 😌)</h3>
+    <label><input type="radio" name="cake" value="Biscoff cheesecake"> Biscoff cheesecake</label>
+    <label><input type="radio" name="cake" value="Biscoff chocolate cake"> Biscoff chocolate cake</label>
+
+    <h3>3) Chocolate</h3>
+    <label><input type="checkbox" name="choc" value="Milk"> Milk</label>
+    <label><input type="checkbox" name="choc" value="Dark"> Dark</label>
+    <label><input type="checkbox" name="choc" value="White"> White</label>
+
+    <h3>4) Flowers or Plant?</h3>
+    <label><input type="radio" name="green" value="Flowers"> Flowers</label>
+    <label><input type="radio" name="green" value="Plant"> Plant</label>
+
+    <br>
+    <button onclick="generate()">Generate My Choices</button>
+
+    <div id="output"></div>
+  </div>
+
+<script>
+function getRadio(name){
+  let selected = document.querySelector('input[name="'+name+'"]:checked');
+  return selected ? selected.value : "Not selected";
+}
+
+function getCheckbox(name){
+  let checked = [...document.querySelectorAll('input[name="'+name+'"]:checked')];
+  return checked.length ? checked.map(x=>x.value).join(", ") : "Not selected";
+}
+
+function generate(){
+  let text = `🎁 Birthday Picks
+
+Gift: ${getRadio("gift")}
+Cake: ${getRadio("cake")}
+Chocolate: ${getCheckbox("choc")}
+Flowers/Plant: ${getRadio("green")}
+
+💛 Accepting virtual hugs now, real ones in summer.`;
+
+  let output = document.getElementById("output");
+  output.style.display = "block";
+  output.textContent = text;
+}
+</script>
+
+</body>
+</html>
